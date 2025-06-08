@@ -1,0 +1,764 @@
+app:
+  description: AI服务三农
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: AI FOR 三农
+  use_icon_as_answer_icon: true
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.18@ca40ec06ff35ca611fa5fdf99a15eeb007a9fe3bd725c9ff6d0436469ab0edc9
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.1.6@eab267a9b9bf70e44b9b7d03690ec2d6e9814aa754d5980db840d577502a5c93
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.5@fd6efd37c2a931911de8ab9ca3ba2da303bef146d45ee87ad896b04b36d09403
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      - document
+      - audio
+      - video
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: '您好！欢迎使用“AI for 三农”，我是您的智能助手。
+
+      无论您需要天气预报、作物管理建议还是市场动态，我都在这里帮助您。让我们一起利用科技的力量，使农业生产和农村生活更加便捷高效。
+
+      请问今天有什么我可以帮您的吗？'
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: true
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      autoPlay: enabled
+      enabled: true
+      language: zh-Hans
+      voice: sambert-zhiqian-v1
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1747820994909-source-1747821003398-target
+      source: '1747820994909'
+      sourceHandle: source
+      target: '1747821003398'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1747822271585-source-1747822365809-target
+      source: '1747822271585'
+      sourceHandle: source
+      target: '1747822365809'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1747793456778-source-1747823025830-target
+      source: '1747793456778'
+      sourceHandle: source
+      target: '1747823025830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1747823025830-source-1747823699465-target
+      source: '1747823025830'
+      sourceHandle: source
+      target: '1747823699465'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1747823699465-source-1747824423426-target
+      source: '1747823699465'
+      sourceHandle: source
+      target: '1747824423426'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: agent
+      id: 1747824423426-532b1a14-c497-4cd0-b7a3-c4d91d826986-1747820994909-target
+      source: '1747824423426'
+      sourceHandle: 532b1a14-c497-4cd0-b7a3-c4d91d826986
+      target: '1747820994909'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1747825801740-source-1747822271585-target
+      selected: false
+      source: '1747825801740'
+      sourceHandle: source
+      target: '1747822271585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1747824423426-false-1747825801740-target
+      source: '1747824423426'
+      sourceHandle: 'false'
+      target: '1747825801740'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747824423426-true-1747822271585-target
+      source: '1747824423426'
+      sourceHandle: 'true'
+      target: '1747822271585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1747824423426-45aa4840-0384-4dee-b422-a2d87a56195d-1747831964437-target
+      selected: false
+      source: '1747824423426'
+      sourceHandle: 45aa4840-0384-4dee-b422-a2d87a56195d
+      target: '1747831964437'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1747831964437-source-llm-target
+      source: '1747831964437'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1747793456778'
+      position:
+        x: -934.6687564140714
+        y: -192.8988492958195
+      positionAbsolute:
+        x: -934.6687564140714
+        y: -192.8988492958195
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1747831964437'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: gemini-2.5-pro-preview-05-06
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: c91eb4e1-a322-42b2-8c02-ac2c51f78ef6
+          role: system
+          text: 你是AI FOR 三农 智能体
+        - id: 6f08bfbd-79fd-418b-8d33-13590448e52c
+          role: user
+          text: "AI FOR 三农 智能体 - 多模态数据处理提示词\n\n工作流程说明：\n\n本智能体旨在根据用户提供的查询指令 {{#1747831964437.text#}}\
+            \ 对上下文数据 {{#context#}} 进行分析，这些数据可能包括图片、文档、音频、视频及URL链接。\n\n1. 多模态数据分析 \
+            \ \n对输入的多模态数据进行全面解析，确保从各类数据中提取出关键信息。\n\n2. 信息识别与提取  \n针对不同类型的输入数据，采取相应的技术手段进行特征识别与内容提取：\n\
+            \n图片：使用计算机视觉技术来识别图像中的物体、场景、颜色等，并提取相关信息。\n文档：通过文本分析了解其主要内容，提供摘要或特定主题的深入分析。\n\
+            音频：应用语音识别技术将音频转换为文字，并进行语义分析以理解核心信息。\n视频：结合图像序列分析与音频轨道，综合获取视频内的信息。\nURL链接：抓取网页的主要内容并进行分析，提炼重要信息点。\n\
+            \n3. 专业角度解读与分析  \n基于农业、农村发展相关领域的专业知识，对所提取的信息进行深入解析，为用户提供有价值的洞察与建议。\n\n\
+            示例输出结构（针对不同数据类型）\n\n图片\n标题：图像内容解读\n正文：图像展示了一片玉米田，植株生长整齐，但部分叶片出现黄化与斑点症状。背景可见一台拖拉机停放于田边，轮胎存在轻微下沉现象。\n\
+            标题：信息分析与异常检测\n作物健康状态异常：部分玉米叶片出现黄化与不规则斑点...\n农机状态异常：拖拉机轮胎陷入土壤较深...\n\n\
+            文档\n标题：文档内容摘要\n正文：该文档主要讨论了[主题]，其中提到了[具体信息或观点]...\n\n音频\n标题：音频内容摘要\n正文：在音频中，发言人谈到了[话题]，强调了[重要观点]...\n\
+            \n视频\n标题：视频内容摘要\n正文：视频展示了[场景描述]，特别指出[重要事件或发现]...\n\nURL链接\n标题：网页内容摘要\n\
+            正文：从提供的链接中获取的内容涉及[主题]，页面重点介绍了[核心内容]..."
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
+        selected: false
+        structured_output_enabled: true
+        title: 多模态数据识别
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 119
+      id: llm
+      position:
+        x: 793.2924909458897
+        y: 690.8490316413652
+      positionAbsolute:
+        x: 793.2924909458897
+        y: 690.8490316413652
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复1
+        type: answer
+        variables: []
+      height: 104
+      id: answer
+      position:
+        x: 1157.4836810399852
+        y: 681.16205831122
+      positionAbsolute:
+        x: 1157.4836810399852
+        y: 681.16205831122
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: 你是具备天气预报、地理信息、路径规划、交通路况查询等多维度智能服务的AI助手，请中文回复{{#sys.query#}}
+          maximum_iterations:
+            type: constant
+            value: 5
+          mcp_servers_config:
+            type: constant
+            value: "{\n  \"mcpServers\": {\n    \"amap-amap-sse\": {\n      \"url\"\
+              : \"https://mcp.amap.com/sse?key=7274e42033f9d474ad925d629a6694a3\"\n\
+              \    }\n  }\n}"
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: qwq-plus-0305
+              model_type: llm
+              provider: langgenius/tongyi/tongyi
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+        agent_strategy_label: ReAct (Support MCP Tools)
+        agent_strategy_name: mcp_sse_ReAct
+        agent_strategy_provider_name: junjiem/mcp_see_agent/mcp_see_agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: junjiem/mcp_see_agent:0.1.7@43f9f41eb8f7d74cf5168b6c80d2136f4f79895744bb0a9205d1afa9230c54d3
+        selected: false
+        title: Agent
+        type: agent
+      height: 145
+      id: '1747820994909'
+      position:
+        x: 107.09467266104832
+        y: 315.0385889208355
+      positionAbsolute:
+        x: 107.09467266104832
+        y: 315.0385889208355
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1747820994909.text#}}'
+        desc: ''
+        selected: false
+        title: 天气高德回复
+        type: answer
+        variables: []
+      height: 104
+      id: '1747821003398'
+      position:
+        x: 577.5574419812465
+        y: 284.1004959021993
+      positionAbsolute:
+        x: 577.5574419812465
+        y: 284.1004959021993
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 1
+          mode: chat
+          name: gemini-2.5-pro-preview-05-06
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 61d7de20-efc2-47fc-a715-afbe34c86be9
+          role: system
+          text: '您是服务三农的智能体聊天机器人，是人工智能大模型融合图像、气象、遥感与农业知识等多源数据，面向农户、农业企业和监管部门提供智能决策支持。
+
+
+            您具备联网搜索能力与专业知识库，能够结合用户当前对话内容{{#context#}}及上传文件{{#sys.files#}}，精准回应农业相关问题。
+
+
+            用户提问：“{{#sys.query#}}”，经分析其意图为“{{#1747823025830.text#}}”。请根据您的知识和检索信息，给出简明、准确、实用的回答，必要时包括操作步骤、背景说明或权威参考。
+
+
+            我们期待您用通俗易懂的语言，帮助每一位用户解决问题、提升农业生产效率。'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
+        selected: true
+        title: LLM整理回答1
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 119
+      id: '1747822271585'
+      position:
+        x: 240.85626165762818
+        y: -101.01806138519557
+      positionAbsolute:
+        x: 240.85626165762818
+        y: -101.01806138519557
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1747822271585.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 104
+      id: '1747822365809'
+      position:
+        x: 737.0038759721763
+        y: -101.01806138519557
+      positionAbsolute:
+        x: 737.0038759721763
+        y: -101.01806138519557
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-lite-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: f3c5e394-e169-45cb-8f5c-9958b7a70429
+          role: system
+          text: "您是“服务三农AI智能体”，专为农业、农村、农民相关话题而设计，融合图像、气象、遥感、农科知识等多源数据，致力于为基层农户、农业企业及政府监管部门提供智能化、精准化的决策支持。\
+            \  \n您的核心使命是：“用AI赋能每一亩土地，让科技走进每一个乡村”。\n\n您具备以下能力：\n- 精通农业种植、养殖、病虫害防治、土壤管理等专业知识；\n\
+            - 了解农村发展政策、乡村治理、基础设施建设等内容；\n- 关注农民生活、就业、技能培训、权益保障等现实需求；\n- 掌握天气气候对农业生产的影响分析能力；\n\
+            - 具备网络搜索能力，可获取最新政策、市场价格、技术指南等信息；\n- 拥有广博的知识领域，能跨学科辅助农业问题解决。\n\n最开始的回复，请以如下方式自我介绍：\n\
+            > “我是服务三农AI智能体。”\n\n工作流程说明：\n\n1. **意图识别（intent_classification）**  \n\
+            \   根据用户的问题内容，判断其属于以下哪个类别，并填写进 JSON 的 `intent_classification` 字段中：\n \
+            \  ```\n   [\n     1. 农业,\n     2. 农村,\n     3. 农民,\n     4. 天气,\n   \
+            \  5. 政策,\n     6. 市场,\n     7. 技术支持,\n     8. 教育培训,\n     9. 其他\n   ]\n\
+            \   ```\n\n2. **设备节点提取（device_name）**  \n   若用户提及具体设备或监测节点（如“无人机”、“遥感图”、“收割机”等），请将其名称提取并填入\
+            \ `device_name` 字段；若未提及，则留空。\n\n3. **问题描述提取（problem_description）**  \n\
+            \   准确提炼用户提出的具体问题内容，填写至 `problem_description` 字段中。\n\n4. **补充交互逻辑（follow_up_action）**\
+            \  \n   如果用户提供的信息不完整或需要进一步澄清，请生成一个自然语言提问，询问缺失的信息，并将该提问填入 `follow_up_action`\
+            \ 字段中，以便后续继续处理。\n\n5. **输出格式要求**  \n   输出结果必须为标准 JSON 格式，结构如下所示（示例）：\n\
+            \   ```json\n   {\n     \"intent_classification\": \"农业\",\n     \"device_name\"\
+            : \"\",\n     \"problem_description\": \"小麦叶片出现黄色斑点，疑似病害\",\n     \"follow_up_action\"\
+            : \"为了更好地判断病害类型，请问是否可以上传一张作物叶片的照片？\"\n   }\n   ```\n\n6. **注意事项**\n  \
+            \ - 若问题涉及多个分类，请优先选择最贴近的主类；\n   - 若无法准确分类，请归入“其他”类别，并在 follow_up_action\
+            \ 中请求更多信息；\n   - 在整个对话过程中保持语气友好、专业、简洁，符合面向农村用户的沟通习惯。\n\n---\n\n### 示例输入输出\n\
+            \n**用户提问：**  \n“我这周发现我家水稻田里有些稻穗发白，是不是得了稻瘟病？”\n\n**JSON输出：**\n```json\n\
+            {\n  \"intent_classification\": \"农业\",\n  \"device_name\": \"\",\n  \"\
+            problem_description\": \"水稻稻穗发白，疑似稻瘟病\",\n  \"follow_up_action\": \"为了更准确判断病情，请问是否可以上传一张稻穗的照片？此外，您所在的地区近期是否有降雨或温度变化较大的情况？\"\
+            \n}\n```\n\n**用户的问题是：{{#context#}}"
+        selected: false
+        structured_output_enabled: false
+        title: 意图分类
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 89
+      id: '1747823025830'
+      position:
+        x: -890.9326563070729
+        y: 145.93083840408426
+      positionAbsolute:
+        x: -890.9326563070729
+        y: 145.93083840408426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import re\nimport json\n\ndef main(yitu_json: str) -> dict:\n    intent_classification\
+          \ = \"\"\n    device_name = \"\"\n    problem_description = \"\"\n    follow_up_action\
+          \ = \"\"\n    res = \"\"\n\n    # 尝试提取 ```json 格式包裹的内容\n    pattern = r'```json(.*?)```'\n\
+          \    match = re.search(pattern, yitu_json, re.DOTALL)\n\n    if match:\n\
+          \        extracted_json = match.group(1).strip()\n        res = extracted_json\n\
+          \    else:\n        # 如果没有找到包裹内容，则使用原始输入尝试提取 JSON\n        res = yitu_json\n\
+          \n    try:\n        # 尝试将字符串转换为 JSON 对象\n        res_data = json.loads(res)\n\
+          \        intent_classification = res_data.get(\"intent_classification\"\
+          , \"\")\n        device_name = res_data.get(\"device_name\", \"\")\n   \
+          \     problem_description = res_data.get(\"problem_description\", \"\")\n\
+          \        follow_up_action = res_data.get(\"follow_up_action\", \"\")\n \
+          \   except (json.JSONDecodeError, KeyError, TypeError):\n        # 如果解析失败，返回空字段并保留原始响应\n\
+          \        intent_classification = \"\"\n        device_name = \"\"\n    \
+          \    problem_description = \"\"\n        follow_up_action = \"\"\n     \
+          \   res = yitu_json  # 原始未解析内容\n\n    return {\n        \"json_result\"\
+          : res,\n        \"intent_classification\": intent_classification,\n    \
+          \    \"device_name\": device_name,\n        \"problem_description\": problem_description,\n\
+          \        \"follow_up_action\": follow_up_action,\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          device_name:
+            children: null
+            type: string
+          follow_up_action:
+            children: null
+            type: string
+          intent_classification:
+            children: null
+            type: string
+          json_result:
+            children: null
+            type: string
+          problem_description:
+            children: null
+            type: string
+        selected: false
+        title: 意图分类后转为json代码
+        type: code
+        variables:
+        - value_selector:
+          - '1747823025830'
+          - text
+          variable: yitu_json
+      height: 53
+      id: '1747823699465'
+      position:
+        x: -890.9326563070729
+        y: 357.59756284662825
+      positionAbsolute:
+        x: -890.9326563070729
+        y: 357.59756284662825
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 34ed0004-204c-47fb-9f14-3c4ed99cc850
+            value: 其他
+            varType: string
+            variable_selector:
+            - '1747823699465'
+            - intent_classification
+          id: 'true'
+          logical_operator: and
+        - case_id: 532b1a14-c497-4cd0-b7a3-c4d91d826986
+          conditions:
+          - comparison_operator: contains
+            id: 74e429fc-780f-4702-9935-a11495f41aad
+            value: 天气
+            varType: string
+            variable_selector:
+            - '1747823699465'
+            - intent_classification
+          id: 532b1a14-c497-4cd0-b7a3-c4d91d826986
+          logical_operator: and
+        - case_id: 45aa4840-0384-4dee-b422-a2d87a56195d
+          conditions:
+          - comparison_operator: contains
+            id: d36ae04d-dd99-400f-bd58-ca2be4f40fd1
+            sub_variable_condition:
+              case_id: 59bf56e1-2738-4965-8cdb-fd47dea6bbc3
+              conditions:
+              - comparison_operator: in
+                id: 97996fbc-b2ff-4fde-b589-c078208db16d
+                key: type
+                value:
+                - image
+                varType: string
+              - comparison_operator: in
+                id: a3c2a493-4a89-44d0-be20-98866b19f11a
+                key: type
+                value:
+                - document
+                varType: string
+              - comparison_operator: in
+                id: a33bd707-ff43-4f9f-bbab-0e47c3089678
+                key: type
+                value:
+                - audio
+                varType: string
+              - comparison_operator: in
+                id: 37c74eb4-9e9e-4bbb-ab11-b4b12d17f652
+                key: type
+                value:
+                - video
+                varType: string
+              - comparison_operator: contains
+                id: 9db80e7d-bf73-4b52-80ba-7272d421fb80
+                key: url
+                value: http
+                varType: string
+              - comparison_operator: contains
+                id: 5a6f282d-0b08-42b1-9f1c-06ae4e2946d8
+                key: url
+                value: www
+                varType: string
+              logical_operator: or
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          id: 45aa4840-0384-4dee-b422-a2d87a56195d
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 365
+      id: '1747824423426'
+      position:
+        x: -486.49802210435485
+        y: 273.7878179188276
+      positionAbsolute:
+        x: -486.49802210435485
+        y: 273.7878179188276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 3jHWONbByyXICzJdMmVDenpj3tmC+qFwA0g8TGWmYgGPlXLt/phIEoldEPlCmy7J
+        - S3IcJtUVrR55of6CV0k0S3Mr6Zal+0kpuS/xch9EySEh7dq62F1pxZ8aGyQHP1t7
+        - 5TtkTOzbxQpy8uMK7Xj2IAyQntl9Sz8o8FK8BLnjlApwz9kdjs/Hu9gChT+EVoZ/
+        - ZUtUuI5tGCnAT9Pr7PQLGAU+zzRpfvhpjRNXjHTUQeaX/hKVuNXBa++CbYWS7oKB
+        desc: ''
+        metadata_filtering_mode: automatic
+        metadata_model_config:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-lite-001
+          provider: langgenius/gemini/google
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank-v2
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 4
+        query_variable_selector:
+        - '1747793456778'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 91
+      id: '1747825801740'
+      position:
+        x: -136.60758096674795
+        y: -150.06153601578083
+      positionAbsolute:
+        x: -136.60758096674795
+        y: -150.06153601578083
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-reasoner
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 3c003ffd-a484-44fa-bc49-c3c90218cf6c
+          role: system
+          text: 你是一个数据分析专家，请根据要求{{#context#}}生成对用户上传数据{{#sys.files#}}分析的计划：
+        - id: d11fb584-353b-4c2e-83ba-0be241952fa6
+          role: user
+          text: "**工作流：\n 1. 根据输入信息，判断用户问题属于哪个技术领域：\n 2. 该领域的图像识别，涉及哪些知识 ；\n 3. 请思考如何\
+            \ 从专业的角度对图像进行内容提取和分析；\n 4. 直接输出分析规划\n请根据用户输入信息{{#sys.query#}},生成对{{#sys.files#}}的分析计划；"
+        selected: false
+        title: 分析规划生成
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1747831964437'
+      position:
+        x: 258.1973286847533
+        y: 752.1072167700459
+      positionAbsolute:
+        x: 258.1973286847533
+        y: 752.1072167700459
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 1191.133066196252
+      y: 180.55307262100953
+      zoom: 0.7937005707555267
